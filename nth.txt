@@ -1,0 +1,48 @@
+{
+    "author": "ajam0033@student.monash.edu",
+    "to": "ahmad.pencil@gmail.com",
+    "subject": "sale!",
+    "email_thread": "theres a sale at coles!"
+}
+
+{
+    "author": "ajam0033@student.monash.edu",
+    "to": "ahmad.pencil@gmail.com",
+    "subject": "reminder",
+    "email_thread": "Hey i quickly wanted to notify you, the dev server is down over the weekend"
+}
+
+{
+    "author": "ajam0033@student.monash.edu",
+    "to": "ahmad.pencil@gmail.com",
+    "subject": "hr request",
+    "email_thread": "hey sorry bout this but hr wants to see it coming from you, can u pls respond to this email with your first name"
+}
+
+{
+    "author": "ajam0033@student.monash.edu",
+    "to": "ahmad.pencil@gmail.com",
+    "subject": "can u book a meeting?",
+    "email_thread": "hey whenever your free can u book a meeting for some time Monday."
+}
+
+{
+    "author": "ajam0033@student.monash.edu",
+    "to": "ahmad.pencil@gmail.com",
+    "subject": "sale!",
+    "email_thread": "theres a sale at coles!"
+}
+
+{
+    "author": "ajam0033@student.monash.edu",
+    "to": "ahmad.pencil@gmail.com",
+    "subject": "sale!",
+    "email_thread": "theres a sale at coles!"
+}
+
+{
+    "author": "ajam0033@student.monash.edu",
+    "to": "ahmad.pencil@gmail.com",
+    "subject": "sale!",
+    "email_thread": "theres a sale at coles!"
+}
