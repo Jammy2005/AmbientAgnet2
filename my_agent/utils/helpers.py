@@ -126,7 +126,8 @@ def parse_email(email_input: dict) -> dict:
         email_input["author"],
         email_input["to"],
         email_input["subject"],
-        email_input["email_thread"],
+        # email_input["email_thread"],
+        email_input["body"],
     )
 
 def parse_gmail(email_input: dict) -> tuple[str, str, str, str, str]:

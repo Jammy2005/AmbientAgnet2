@@ -144,15 +144,36 @@ def check_calendar_availability(day: str) -> str:
 
     return "Busy at:\n" + "\n".join(busy_slots)
 
-def create_message(sender, to, subject, message_text):
-  message = MIMEText(message_text)
-  message['to'] = to
-  message['from'] = sender
-  message['subject'] = subject
-  raw_message = base64.urlsafe_b64encode(message.as_string().encode("utf-8"))
-  return {
-    'raw': raw_message.decode("utf-8")
-  }
+# def create_message(sender, to, subject, message_text, thread_id=None):
+#   message = MIMEText(message_text)
+#   message['to'] = to
+#   message['from'] = sender
+#   message['subject'] = subject
+#   raw_message = base64.urlsafe_b64encode(message.as_string().encode("utf-8"))
+#   return {
+#     'raw': raw_message.decode("utf-8")
+#   }
+
+def create_message(sender, to, subject, message_text, thread_id=None):
+    message = MIMEText(message_text)
+    message['to'] = to
+    message['from'] = sender
+    message['subject'] = subject
+
+    # Encode message
+    raw_message = base64.urlsafe_b64encode(message.as_string().encode("utf-8")).decode("utf-8")
+
+    # Build message payload
+    message_payload = {
+        'raw': raw_message
+    }
+
+    # Attach threadId if replying
+    if thread_id:
+        message_payload['threadId'] = thread_id
+
+    return message_payload
+
 
 def send_message(service, user_id, message):
   try:
@@ -164,7 +185,7 @@ def send_message(service, user_id, message):
     return None
 
 #weird observation, adding a blank line bw the description and the args causes an issue
-def send_gmail(recipient, subject, message_text):
+def send_gmail(recipient, subject, message_text, thread_id=None):
     """Send an email using the Gmail API.
     Args:
         recipient: Email address of the recipient.
@@ -190,7 +211,7 @@ def send_gmail(recipient, subject, message_text):
 
     try:
         service = build("gmail", "v1", credentials=creds)
-        message_body = create_message(sender, recipient, subject, message_text)
+        message_body = create_message(sender, recipient, subject, message_text, thread_id)
         sent_message = send_message(service, "me", message_body)
         
         if sent_message:

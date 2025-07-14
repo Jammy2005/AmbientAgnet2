@@ -295,8 +295,10 @@ STANDARD_TOOLS_PROMPT = """
 
 # Tool descriptions for HITL workflow
 HITL_TOOLS_PROMPT = """
-1. write_email(to, subject, content)
+1. write_email(to, subject, content, thread_id=None)
    - Send an email via Gmail.
+     • If thread_id is provided, the email will be sent as a reply in that Gmail thread.
+     • If thread_id is omitted, a new email thread is created.
 
 2. schedule_meeting_tool(attendees, subject, duration_minutes, preferred_day, start_time)
    - Schedule a calendar meeting.
@@ -312,6 +314,7 @@ HITL_TOOLS_PROMPT = """
 5. Done(done)
    - Signal that the email workflow is complete.
 """
+
 
 
 # Tool descriptions for HITL with memory workflow

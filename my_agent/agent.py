@@ -29,8 +29,8 @@ tools = [
 
 tools_by_name = {}
 
-for obj in tools:
-    print(obj, type(obj), hasattr(obj, "name"))
+# for obj in tools:
+#     print(obj, type(obj), hasattr(obj, "name"))
     
 for tooly in tools:
     tools_by_name[tooly.name] = tooly # creates a dictionairy where key is name of the tool and the value is tool object itself
@@ -50,12 +50,14 @@ def triage_router(state: State) -> Command[Literal["triage_interrupt_handler", "
 
     # Parse the email input
     author, to, subject, email_thread = parse_email(state["email_input"])
+    print(f"Parsed email: author={author}, to={to}, subject={subject}, email_thread={email_thread}") 
     user_prompt = triage_user_prompt.format(
         author=author, to=to, subject=subject, email_thread=email_thread
     )
 
     # Create email markdown for Agent Inbox in case of notification  
     email_markdown = format_email_markdown(subject, author, to, email_thread)
+    print(f"Email markdown for triage: {email_markdown}")
 
     # Format system prompt with background and triage instructions
     system_prompt = triage_system_prompt.format(
@@ -395,7 +397,7 @@ response_agent = agent_builder.compile()
 
 # Build overall workflow
 overall_workflow = (
-    StateGraph(State, input=StateInput)
+    StateGraph(State, input_schema=StateInput)
     .add_node(triage_router)
     .add_node(triage_interrupt_handler)
     .add_node("response_agent", response_agent)
@@ -404,3 +406,21 @@ overall_workflow = (
 )
 
 email_assistant = overall_workflow.compile()
+
+
+# email_input = {
+#     "author": "Ahmad Jamshaid <ajam0033@student.monash.edu>",
+#     "to": "Ahmad.pencil@gmail.com",
+#     "subject": "Deployment",
+#     "body": "Hey Ahmad,\r\n\r\nAre u done with the deployment of the ambient agent application?\r\n",
+#     "id": "19807a7ecac83d6b",
+#     "email_thread": "19807a7ecac83d6b"
+#   }
+
+# # Run the agent
+# response = email_assistant.invoke({"email_input": email_input})
+
+# print(response)
+
+# for m in response["messages"]:
+#     m.pretty_print()
