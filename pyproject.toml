@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 
-# All of your runtime dependencies
+# Runtime dependencies
 dependencies = [
   "annotated-types==0.7.0",
   "anyio==4.9.0",
@@ -56,6 +56,10 @@ dependencies = [
   "python-dateutil",
   "pytz",
 ]
+
+# 🔑  Tell setuptools to look ONLY under src/
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]

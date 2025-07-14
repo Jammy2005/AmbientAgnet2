@@ -1,3 +1,6 @@
 .env
 token.json
 credentials.json
+frontend/node_modules/
+frontend/.next/            # if Next.js
+frontend/dist/

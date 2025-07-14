@@ -1,7 +1,7 @@
 from langchain_core.tools import tool
 from pydantic import BaseModel
 from datetime import datetime
-from my_agent.utils.gmail import schedule_meeting, send_gmail, check_calendar_availability
+from src.my_agent.utils.gmail import schedule_meeting, send_gmail, check_calendar_availability
 
 # Agent tools 
 @tool
